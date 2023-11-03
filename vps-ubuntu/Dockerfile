@@ -19,7 +19,7 @@ RUN pip install --upgrade pip
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN useradd --disabled-password --home / container
+RUN useradd -m -d /home/container -s /bin/bash container
 
 # Add 'container' user to the sudo group
 RUN usermod -aG sudo container
