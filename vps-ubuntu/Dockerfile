@@ -24,6 +24,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN useradd -m -d /home/container -s /bin/bash container
 
+RUN echo "%sudo   ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers
 # Add 'container' user to the sudo group
 RUN usermod -aG sudo container
 
