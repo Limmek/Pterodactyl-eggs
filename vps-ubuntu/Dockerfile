@@ -3,9 +3,6 @@ FROM ubuntu:22.04
 # Set noninteractive mode
 ENV DEBIAN_FRONTEND noninteractive
 
-# Add goland repository
-RUN add-apt-repository -y ppa:longsleep/golang-backports
-
 # Update base packages
 RUN apt update \
     && apt upgrade -y
@@ -15,8 +12,9 @@ RUN apt-get install -y wget bash curl ca-certificates nginx iproute2 ffmpeg zip 
     && apt-get install -y --no-install-recommends python3 python3-pip php gnupg2 \
     && apt-get install -y libjansson4 \
     && apt-get install -y software-properties-common \
+    && add-apt-repository -y ppa:longsleep/golang-backports \
+    && apt update \
     && apt-get install -y golang \
-    && apt-get install -y  \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip
