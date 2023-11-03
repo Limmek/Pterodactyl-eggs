@@ -10,7 +10,7 @@
     "description": "Run an Ubuntu VPS in pterodactyl!",
     "features": null,
     "docker_images": {
-        
+        "Ubuntu 22.04": "ghcr.io\/limmek\/pterodactyl-images:vps-ubuntu"
     },
     "file_denylist": [],
     "startup": ".\/start.sh",
@@ -23,7 +23,7 @@
     "scripts": {
         "installation": {
             "script": "#!\/bin\/bash\r\n\r\ncd \/mnt\/server\/",
-            "container": "",
+            "container": "ghcr.io\/limmek\/pterodactyl-images:vps-ubuntu",
             "entrypoint": "bash"
         }
     },
