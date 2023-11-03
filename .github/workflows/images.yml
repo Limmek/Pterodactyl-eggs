@@ -28,8 +28,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
-          context: ./vps-ubuntu/${{ matrix.oses }}
-          file: ./vps-ubuntu/${{ matrix.oses }}/Dockerfile
+          context: ./vps-${{ matrix.oses }}/
+          file: ./vps-${{ matrix.oses }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
