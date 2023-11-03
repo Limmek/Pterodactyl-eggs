@@ -30,6 +30,6 @@ WORKDIR /
 
 STOPSIGNAL SIGINT
 
-COPY ./entrypoint.sh /entrypoint.sh
+COPY --chown=container:container ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 CMD ["/bin/bash", "/entrypoint.sh"]
