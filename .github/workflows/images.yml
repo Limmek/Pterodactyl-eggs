@@ -1,0 +1,36 @@
+name: build images
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - vps-ubuntu/**
+jobs:
+  push:
+    name: "image:${{ matrix.oses }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        oses:
+          - ubuntu
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/setup-qemu-action@v2
+      - uses: docker/setup-buildx-action@v2
+        with:
+          buildkitd-flags: --debug
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.REGISTRY_TOKEN }}
+      - uses: docker/build-push-action@v4
+        with:
+          context: ./vps-ubuntu/${{ matrix.oses }}
+          file: ./vps-ubuntu/${{ matrix.oses }}/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/limmek/images:${{ matrix.oses }}
