@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-11-03T13:25:48+01:00",
+    "exported_at": "2023-11-03T17:41:24+01:00",
     "name": "VPS - Ubuntu",
     "author": "limmek@swedon.se",
     "description": "Run an Ubuntu VPS in pterodactyl!",
@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n\r\ncd \/mnt\/server\/",
+            "script": "#!\/bin\/bash\r\n\r\ncd \/mnt\/server\/\r\n\r\ncurl -sSL -o .\/start.sh https:\/\/raw.githubusercontent.com\/Limmek\/Pterodactyl-eggs\/main\/vps-ubuntu\/start.sh\r\nchmod +x .\/start.sh",
             "container": "ghcr.io\/limmek\/pterodactyl-images:vps-ubuntu",
             "entrypoint": "bash"
         }
