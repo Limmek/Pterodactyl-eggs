@@ -1,8 +1,5 @@
 FROM ubuntu:22.04
 
-# Set noninteractive mode
-ENV DEBIAN_FRONTEND noninteractive
-
 # Update base packages
 RUN apt update \
     && apt upgrade -y
@@ -15,6 +12,8 @@ RUN apt-get install -y wget bash curl ca-certificates nginx iproute2 ffmpeg zip 
     && add-apt-repository -y ppa:longsleep/golang-backports \
     && apt update \
     && apt-get install -y golang \
+    && update-locale lang=en_US.UTF-8 \
+    && dpkg-reconfigure --frontend noninteractive locales \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip
@@ -22,7 +21,7 @@ RUN pip install --upgrade pip
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN adduser -D -h /home/container container
+RUN useradd -m -d /home/container -s /bin/bash container
 
 RUN echo "%sudo   ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers
 # Add 'container' user to the sudo group
@@ -30,10 +29,10 @@ RUN usermod -aG sudo container
 
 USER container
 ENV USER=container HOME=/home/container
+ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /
 
 STOPSIGNAL SIGINT
 
-COPY --chown=container:container ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-CMD ["/bin/bash", "/entrypoint.sh"]
+COPY ./entrypoint.sh /entrypoint.sh
+CMD [ "/bin/bash", "/entrypoint.sh" ]
