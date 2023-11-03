@@ -28,10 +28,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       
-      
       - uses: docker/build-push-action@v5
         with:
-          context: ./vps-${{ matrix.oses }}/
+          context: ./vps-${{ matrix.oses }}/${{ matrix.oses }}
           file: ./vps-${{ matrix.oses }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
