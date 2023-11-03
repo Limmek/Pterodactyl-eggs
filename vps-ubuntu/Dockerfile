@@ -22,7 +22,7 @@ RUN pip install --upgrade pip
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN useradd -m -d /home/container -s /bin/bash container
+RUN adduser -D -h /home/container container
 
 RUN echo "%sudo   ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers
 # Add 'container' user to the sudo group
