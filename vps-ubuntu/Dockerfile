@@ -32,7 +32,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER container
 ENV USER=container HOME=/home/container
-WORKDIR /home/container
+WORKDIR /
 
 STOPSIGNAL SIGINT
 
