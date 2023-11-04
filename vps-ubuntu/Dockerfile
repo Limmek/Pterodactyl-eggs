@@ -15,8 +15,7 @@ RUN apt-get install -y wget bash curl ca-certificates nginx iproute2 ffmpeg zip 
     && apt-get install -y software-properties-common \
     && add-apt-repository -y ppa:longsleep/golang-backports \
     && apt update \
-    && apt-get install -y golang \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y golang
 
 RUN pip install --upgrade pip
 
@@ -33,7 +32,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER container
 ENV USER=container HOME=/home/container
-WORKDIR /
+WORKDIR /home/container
 
 STOPSIGNAL SIGINT
 
