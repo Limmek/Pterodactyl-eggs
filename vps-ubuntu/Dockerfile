@@ -2,7 +2,7 @@ FROM  --platform=$TARGETOS/$TARGETARCH ubuntu:22.04
 
 ENV DEBIAN_FRONTEND noninteractive
 # Add container user
-RUN useradd -u 999 -d /home/container -s /bin/bash -m container --disabled-password
+RUN useradd -u 999 -d /home/container -m container --disabled-password
 
 # Update base packages
 RUN apt update \
