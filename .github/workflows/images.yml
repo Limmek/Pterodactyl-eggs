@@ -6,13 +6,13 @@ on:
       - vps-ubuntu/Dockerfile
 jobs:
   push:
-    name: "image:${{ matrix.oses }}"
+    name: "image:${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        oses:
-          - ubuntu
+        tag:
+          - vps-ubuntu
     steps:
       - uses: actions/checkout@v3
       
@@ -22,6 +22,14 @@ jobs:
         with:
           buildkitd-flags: --debug
       
+      - name: Cache Docker layers
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+      
       - uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -30,9 +38,16 @@ jobs:
       
       - uses: docker/build-push-action@v5
         with:
-          context: ./vps-${{ matrix.oses }}
-          file: ./vps-${{ matrix.oses }}/Dockerfile
+          context: ./${{ matrix.tag }}
+          file: ./${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64,linux/arm64
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
           push: true
           tags: |
-            ghcr.io/limmek/pterodactyl-images:vps-${{ matrix.oses }}
+            ghcr.io/limmek/pterodactyl-images:${{ matrix.tag }}
+      
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache

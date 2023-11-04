@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-11-03T17:41:24+01:00",
+    "exported_at": "2023-11-04T10:04:09+01:00",
     "name": "VPS - Ubuntu",
     "author": "limmek@swedon.se",
     "description": "Run an Ubuntu VPS in pterodactyl!",
@@ -13,16 +13,16 @@
         "Ubuntu 22.04": "ghcr.io\/limmek\/pterodactyl-images:vps-ubuntu"
     },
     "file_denylist": [],
-    "startup": ".\/start.sh",
+    "startup": "bash .\/start.sh",
     "config": {
         "files": "{\r\n    \"vps.config\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"internalip\": \"0.0.0.0\",\r\n            \"port\": \"{{server.build.default.port}}\"\r\n        }\r\n    }\r\n}",
-        "startup": "{\r\n    \"done\": \")! Welcome \",\r\n    \"userInteraction\": [\r\n        \"Go to eula.txt for more info.\"\r\n    ]\r\n}",
+        "startup": "{\r\n    \"done\": \"started\",\r\n    \"userInteraction\": []\r\n}",
         "logs": "{}",
         "stop": "^C & ^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n\r\ncd \/mnt\/server\/\r\n\r\ncurl -sSL -o .\/start.sh https:\/\/raw.githubusercontent.com\/Limmek\/Pterodactyl-eggs\/main\/vps-ubuntu\/start.sh\r\nchmod +x .\/start.sh",
+            "script": "#!\/bin\/bash\r\necho \"Starting Install Script....\"\r\ncd \/mnt\/server\/\r\n\r\ncurl -sSL -o .\/start2.sh https:\/\/raw.githubusercontent.com\/Limmek\/Pterodactyl-eggs\/main\/vps-ubuntu\/start.sh\r\nchmod +x .\/start2.sh",
             "container": "ghcr.io\/limmek\/pterodactyl-images:vps-ubuntu",
             "entrypoint": "bash"
         }
