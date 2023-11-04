@@ -9,7 +9,7 @@ RUN apt update \
     && apt upgrade -y
 
 # Install dependencies
-RUN apt-get install -y wget bash curl ca-certificates nginx iproute2 ffmpeg zip unzip sudo make git lolcat figlet toilet \
+RUN apt-get install -y wget bash curl ca-certificates nginx iproute2 ffmpeg zip unzip sudo make git lolcat figlet toilet binutils locales init-system-helpers\
     && apt-get install -y --no-install-recommends python3 python3-pip php gnupg2 \
     && apt-get install -y libjansson4 \
     && apt-get install -y software-properties-common \
