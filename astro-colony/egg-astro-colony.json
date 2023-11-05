@@ -101,13 +101,13 @@
             "field_type": "text"
         },
         {
-            "name": "Admins",
-            "description": "List of admins. Only (steamID64s) separatet by comma.",
+            "name": "Admin List",
+            "description": "List of server administrators only (steamID64s) allowed, separatet by comma.",
             "env_variable": "SERVER_ADMINS",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "string",
+            "rules": "string|nullable",
             "field_type": "text"
         },
         {
