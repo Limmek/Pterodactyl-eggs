@@ -19,12 +19,12 @@ RUN update-locale lang=en_US.UTF-8 \
     && dpkg-reconfigure --frontend noninteractive locales
 
 # Add 'container' user to the sudo group
-RUN usermod -aG sudo container
+RUN usermod -u 999 -aG sudo container
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER container
 ENV USER=container HOME=/home/container
-WORKDIR /home/container
+WORKDIR /
 
 STOPSIGNAL SIGINT
 

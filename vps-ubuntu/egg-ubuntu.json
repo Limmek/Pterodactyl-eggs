@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-11-04T10:04:09+01:00",
+    "exported_at": "2023-11-07T20:39:08+01:00",
     "name": "VPS - Ubuntu",
     "author": "limmek@swedon.se",
     "description": "Run an Ubuntu VPS in pterodactyl!",
@@ -13,19 +13,30 @@
         "Ubuntu 22.04": "ghcr.io\/limmek\/pterodactyl-images:vps-ubuntu"
     },
     "file_denylist": [],
-    "startup": "bash .\/start.sh",
+    "startup": "{{STARTUP_CMD}}",
     "config": {
         "files": "{\r\n    \"vps.config\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"internalip\": \"0.0.0.0\",\r\n            \"port\": \"{{server.build.default.port}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"started\",\r\n    \"userInteraction\": []\r\n}",
-        "logs": "{}",
-        "stop": "^C & ^C"
+        "logs": "{\r\n    \"custom\": false,\r\n    \"location\": \"log.txt\"\r\n}",
+        "stop": "^^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\necho \"Starting Install Script....\"\r\ncd \/mnt\/server\/\r\n\r\ncurl -sSL -o .\/start2.sh https:\/\/raw.githubusercontent.com\/Limmek\/Pterodactyl-eggs\/main\/vps-ubuntu\/start.sh\r\nchmod +x .\/start2.sh",
-            "container": "ghcr.io\/limmek\/pterodactyl-images:vps-ubuntu",
+            "script": "#!\/bin\/bash\r\necho \"Starting Install Script....\"\r\ncd \/mnt\/server\/\r\n\r\napt update\r\napt install -y curl\r\n\r\nif [ ! -f \/mnt\/server\/start.sh ]; then\r\n    echo \"start.sh not found! Downloading...\"\r\n    curl -sSL -o \/mnt\/server\/start.sh https:\/\/raw.githubusercontent.com\/Limmek\/Pterodactyl-eggs\/main\/vps-ubuntu\/start.sh\r\n    chmod +x \/mnt\/server\/start.sh\r\nfi",
+            "container": "ubuntu:18.04",
             "entrypoint": "bash"
         }
     },
-    "variables": []
+    "variables": [
+        {
+            "name": "Startup Command",
+            "description": "",
+            "env_variable": "STARTUP_CMD",
+            "default_value": "bash .\/start",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        }
+    ]
 }
