@@ -2,7 +2,7 @@ FROM  --platform=$TARGETOS/$TARGETARCH ubuntu:22.04
 
 ENV DEBIAN_FRONTEND noninteractive
 # Add container user 
-RUN useradd -d /home/container -s /bin/bash -m container
+RUN useradd -u 999 -d /home/container -s /bin/bash -m container
 
 # Update base packages
 RUN apt update \
@@ -16,7 +16,7 @@ RUN apt install -y bash sudo gcc g++ libgcc1 libc++-dev gdb libc6 git wget curl 
 
 # configure locale
 RUN update-locale lang=en_US.UTF-8 \
-        &&   dpkg-reconfigure --frontend noninteractive locales
+    && dpkg-reconfigure --frontend noninteractive locales
 
 # Add 'container' user to the sudo group
 RUN usermod -aG sudo container
