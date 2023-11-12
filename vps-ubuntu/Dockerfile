@@ -19,10 +19,12 @@ RUN update-locale lang=en_US.UTF-8 \
     && dpkg-reconfigure --frontend noninteractive locales
 
 # Add 'container' user to the sudo group
-RUN usermod -u 999 -aG sudo container
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN echo 'container ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+#RUN usermod -u 999 -aG sudo container
+#RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+#RUN echo 'container ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN echo ALL >>/etc/cron.allow
+RUN echo 'container ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
+RUN echo "container ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/dont-prompt-$USER-for-sudo-password"
 
 USER container
 ENV USER=container HOME=/home/container
