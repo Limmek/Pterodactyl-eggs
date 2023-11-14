@@ -4,8 +4,8 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-11-12T20:42:07+01:00",
-    "name": "Astro Colony",
+    "exported_at": "2023-11-14T16:51:39+01:00",
+    "name": "Astro Colony [wine]",
     "author": "limmek@swedon.se",
     "description": "Explore endless Universe and create the most efficient constellation of colonies. Build conveyor systems to automate production. Take care of Astronauts and their needs! Establish new colonies as part of intergalactic simulation.",
     "features": [
@@ -17,7 +17,7 @@
     "file_denylist": [],
     "startup": "wine .\/AstroColony\/Binaries\/Win64\/AstroColonyServer.exe -log -QueryPort={{SERVER_QUERY_PORT}} -SteamServerName=\"{{SERVER_NAME}}\"",
     "config": {
-        "files": "{\r\n  \"AstroColony\/Saved\/Config\/WindowsServer\/ServerSettings.ini\": {\r\n    \"parser\": \"ini\",\r\n    \"find\": {\r\n      \"[\/Script\/AstroColony.EHServerSubsystem].ServerPassword\": \"{{env.SERVER_PASSWORD}}\",\r\n      \"[\/Script\/AstroColony.EHServerSubsystem].Seed\": \"{{env.SERVER_MAPSEED}}\",\r\n      \"[\/Script\/AstroColony.EHServerSubsystem].MapName\": \"{{env.SERVER_MAPNAME}}\",\r\n      \"[\/Script\/AstroColony.EHServerSubsystem].MaxPlayers\": \"{{env.SERVER_MAXPLAYERS}}\",\r\n      \"[\/Script\/AstroColony.EHServerSubsystem].ShouldLoadLatestSavegame\": \"{{env.SERVER_LOADLATESTSAVEGAME}}\",\r\n      \"[\/Script\/AstroColony.EHServerSubsystem].AdminList\": \"{{env.SERVER_ADMINS}}\",\r\n      \"[\/Script\/AstroColony.EHServerSubsystem].SharedTechnologies\": \"{{env.SERVER_SHAREDTECHNOLOGIES}}\",\r\n      \"[\/Script\/AstroColony.EHServerSubsystem].OxygenConsumption\": \"{{env.SERVER_OXYGENCONSUMPTION}}\",\r\n      \"[\/Script\/AstroColony.EHServerSubsystem].FreeConstruction\": \"{{env.SERVER_FREECONSTRUCTION}}\",\r\n      \"[\/Script\/AstroColony.EHServerSubsystem].AutosaveInterval\": \"{{env.SERVER_AUTOSAVEINTERVAL}}\",\r\n      \"[\/Script\/AstroColony.EHServerSubsystem].AutosavesCount\": \"{{env.SERVER_AUTOSAVESCOUNT}}\"\r\n    }\r\n  }\r\n}",
+        "files": "{\r\n    \"AstroColony\/Saved\/Config\/WindowsServer\/ServerSettings.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"[\/Script\/AstroColony.EHServerSubsystem].ServerPassword\": \"{{env.SERVER_PASSWORD}}\",\r\n            \"[\/Script\/AstroColony.EHServerSubsystem].Seed\": \"{{env.SERVER_MAPSEED}}\",\r\n            \"[\/Script\/AstroColony.EHServerSubsystem].MapName\": \"{{env.SERVER_MAPNAME}}\",\r\n            \"[\/Script\/AstroColony.EHServerSubsystem].MaxPlayers\": \"{{env.SERVER_MAXPLAYERS}}\",\r\n            \"[\/Script\/AstroColony.EHServerSubsystem].ShouldLoadLatestSavegame\": \"{{env.SERVER_LOADLATESTSAVEGAME}}\",\r\n            \"[\/Script\/AstroColony.EHServerSubsystem].AdminList\": \"{{env.SERVER_ADMINS}}\",\r\n            \"[\/Script\/AstroColony.EHServerSubsystem].SharedTechnologies\": \"{{env.SERVER_SHAREDTECHNOLOGIES}}\",\r\n            \"[\/Script\/AstroColony.EHServerSubsystem].OxygenConsumption\": \"{{env.SERVER_OXYGENCONSUMPTION}}\",\r\n            \"[\/Script\/AstroColony.EHServerSubsystem].FreeConstruction\": \"{{env.SERVER_FREECONSTRUCTION}}\",\r\n            \"[\/Script\/AstroColony.EHServerSubsystem].AutosaveInterval\": \"{{env.SERVER_AUTOSAVEINTERVAL}}\",\r\n            \"[\/Script\/AstroColony.EHServerSubsystem].AutosavesCount\": \"{{env.SERVER_AUTOSAVESCOUNT}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"server create success\"\r\n}",
         "logs": "{}",
         "stop": "^^C"
